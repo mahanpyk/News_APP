@@ -1,18 +1,18 @@
 package com.example.kotlintoturial.Adapter
 
 import android.content.Context
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlintoturial.Model.Models
 import com.example.kotlintoturial.R
 
 class Sources_Adapter(val context: Context, val sources: List<Models.Source>, val sourceViewCallback: SourceViewCallback) : RecyclerView.Adapter<Sources_Adapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
-        var view: View = LayoutInflater.from(context).inflate(R.layout.sources_item, p0, false)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.sources_item, p0, false)
         return Holder(view)
     }
 

@@ -1,12 +1,12 @@
 package com.example.kotlintoturial
 
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.kotlintoturial.Adapter.News_Adapter
 import com.example.kotlintoturial.Adapter.Sources_Adapter
 import com.example.kotlintoturial.Model.ModelsResponse
@@ -19,11 +19,11 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    internal lateinit var recyclerview: RecyclerView
-    internal lateinit var rv_layoutmanager: LinearLayoutManager
-    internal lateinit var rv_adapter: News_Adapter
-    internal val apiclient = API_Client() //Calling class for using method to other class
-    internal val apiinterface = apiclient.getclient()?.create(API_Interface::class.java)
+    lateinit var recyclerview: RecyclerView
+    lateinit var rv_layoutmanager: LinearLayoutManager
+    lateinit var rv_adapter: News_Adapter
+    val apiclient = API_Client() //Calling class for using method to other class
+    val apiinterface = apiclient.getclient()?.create(API_Interface::class.java)
     private val APIKEY = "bc8dd652e95c494f8497851ec40eb857"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         call.enqueue(object : Callback<ModelsResponse> {
             override fun onResponse(call: Call<ModelsResponse>, response: Response<ModelsResponse>) {
                 if (response.isSuccessful) {
-                    var news: List<Models> = response.body()!!.newsList!!
+                    val news: List<Models> = response.body()!!.newsList!!
                     setupRV_news(news)
                 }
             }
